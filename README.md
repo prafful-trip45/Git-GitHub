@@ -113,4 +113,7 @@
 ***
 
 ## git branch
-- ```git branch newBranch``
+- ```git branch newBranch```
+***
+## git checkout
+- Switch to a branch ```git checkout branchName```
