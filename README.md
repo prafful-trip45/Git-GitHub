@@ -16,7 +16,7 @@
 - Files within **.git folder**
     - cd .git
     - ls
-    - Files Present --> ![.git folder contents](https://drive.google.com/open?id=1-8fXTRyjcCCJnYu_aNhybNn2kWOidQ0Y&authuser=stormbreaker4545%40gmail.com&usp=drive_fs)
+    - Files Present --> ![.git folder contents](https://drive.google.com/file/d/1-8fXTRyjcCCJnYu_aNhybNn2kWOidQ0Y/view?usp=sharing)
 
 ### HEAD File
 - This file points to the current branch or commit ID you are currently on
@@ -25,5 +25,5 @@
 
 ### Move HEAD to previous commit
 - In order to do so, we'll need the commit hash
-- **git log** command, copy the commit ID/commit HASH ![git log](https://drive.google.com/open?id=1-6NyebraZB2P6sfQLniNjZEX-dpQsUGU&authuser=stormbreaker4545%40gmail.com&usp=drive_fs)
-- **git checkout commitHash**, this command will move the current head to particular commit ![git checkout commitHash](https://drive.google.com/open?id=1-CQDgoYf9SQx6bue2vz49i_GmS7gVGMk&authuser=stormbreaker4545%40gmail.com&usp=drive_fs)
+- **git log** command, copy the commit ID/commit HASH ![git log](https://drive.google.com/file/d/1-6NyebraZB2P6sfQLniNjZEX-dpQsUGU/view?usp=sharing)
+- **git checkout commitHash**, this command will move the current head to particular commit ![git checkout commitHash](https://drive.google.com/file/d/1-6NyebraZB2P6sfQLniNjZEX-dpQsUGU/view?usp=sharing)
