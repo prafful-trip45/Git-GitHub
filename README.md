@@ -1,5 +1,8 @@
 # Github
 - Config files are global to the host
+- 4 Stages of a File in Git ![File Stages](Images/4Stages_Of_File.png)
+- GIT Cheat Sheet ![Cheat Sheet](Images/Git-Cheat-Sheet.webp)
+***
 
 ## Errors faced
 - Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.
@@ -21,12 +24,11 @@
     ls
     ```
     - Files Present ![.git folder contents](Images/git_folder_files.png)
-
 ***
+
 ### HEAD File
 - This file points to the current branch or commit ID you are currently on
 - Inside this file (```cat HEAD```) you can find string ```refs/heads/currentBranch```, this an internal representation of ```currentBranch```
-
 ***
 
 ### Move HEAD to previous commit
@@ -41,12 +43,34 @@
 	- Create branch out of this commit ID
 	- ```git branch branchName commitID/Hash```
 	- Now you can push these changes
-
 ***
+
 ### GIT Config File
 - Config file stores info about repo's local configuration 
 - ```
 	cd .git
 	cat config
   ``` 
-![git config](Images/git_config.png)
+- ![git config](Images/git_config.png)
+***
+
+### git log
+- Look at repositories history
+- ``` git log ``` ![git log](Images/git_log.png)
+
+***
+
+### git status
+- Retrieve Repo's current status, deleted/modified/created files
+- ```Untracked Files``` => Git has detected that a file exists, but the repo isn't aware of it, add file to repo to make repo aware of it
+***
+
+### git add
+- Tells git repo to starts tracking the file in the local index
+- ```git add fileName```
+- Adds a file to the index. It is ready to be committed to the repository.
+- Still, the file won't have any history! Git has simply been made aware of the file, and you must make a commit to initiate Git’s history.
+***
+
+### git commit
+- Tells Git to take a snapshot of all added content at this point.
