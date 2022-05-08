@@ -43,4 +43,10 @@
 	- Now you can push these changes
 
 ***
-
+### GIT Config File
+- Config file stores info about repo's local configuration 
+- ```
+	cd .git
+	cat config
+  ``` 
+![git config](Images/git_config.png)
