@@ -31,8 +31,8 @@
 
 ### Move HEAD to previous commit
 - In order to do so, we'll need the commit hash
-- ```git log``` command, copy the commit ID/commit HASH ![git log](https://drive.google.com/file/d/1-6NyebraZB2P6sfQLniNjZEX-dpQsUGU/view?usp=sharing)
-- ```git checkout commitHash```, this command will move the current head to particular commit ![git checkout commitHash](https://drive.google.com/file/d/1-6NyebraZB2P6sfQLniNjZEX-dpQsUGU/view?usp=sharing)
+- ```git log``` command, copy the commit ID/commit HASH ![git log](Images/git_log.png)
+- ```git checkout commitHash```, this command will move the current head to particular commit ![git checkout commitHash](Images/git_checkout_commitHash.png)
 - Now if you make changes here you won't be able to push it, as there is no branch created
 
 	#### How to push changes from commitID
