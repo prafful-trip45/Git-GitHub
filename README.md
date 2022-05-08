@@ -115,5 +115,16 @@
 ## git branch
 - ```git branch newBranch```
 ***
+
 ## git checkout
 - Switch to a branch ```git checkout branchName```
+***
+
+## Detached 
+- **Detaching**
+	- The HEAD pointer can move to any arbitrary point, achieved by ```git checkout```
+	- Specify a reference / commit ID 
+	- ``` git checkout e36355ed00ac3af009d7113a9dd281c269a79afd```
+	- **Detached HEAD** just means that the HEAD pointer is not pointed to any branch right now
+	- Instead it is pointing to a commit ID
+	- 
