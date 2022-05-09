@@ -171,10 +171,12 @@
 
 ## Git Add Interactive
 ### git add -i command
+- Opens up Git Interactive menu
 - TBD
 ***
 
 ## Reflog
 - Reflog gives you references to a sequential history of what you have done to the repository
+- Git's reflog is a history of the changes made to the HEAD 
 - 
 
