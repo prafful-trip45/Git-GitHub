@@ -141,7 +141,10 @@
 - Pre Merge repo tree ![Pre-Merge Tree](Images/Pre-Merge.png)
 - Post Merge repo tree ![Post-Merge Tree](Images/Post-Merge.png)
 ### Merge Conflicts
-- added on Main branch
+- When merging current branch ```A``` with another branch ```B```, git looks for the first common ancestor
+- Git then takes the changes on the branch ```B``` that you are merging into from that ```first common ancestor``` and applies them to the branch you are on in one go.
+- These changes create a new commit.
+- Sometimes these changes conflict with each other, meaning both branches altered same lines, thus git throws a merge conflict error
 ***
 
 ## git stash
