@@ -152,6 +152,16 @@
 ***
 
 ## git stash
-- TBD
+- With ``stash`` concept, we can store all local changes and re-apply at will wherever needed
+- ```do some work
+    get interrupted
+    git stash
+    deal with interruption
+    git stash pop```
+- Changes are stores on a separate branch named ``ref/stash``
+- Git commits the state of the index and then commits all current local changes to above branch
+- “commit” message ``WIP on master`` and ``index on master`` is added automatically for the stash.
+- And the HEAD pointer is moved back to previous commit before these local changes
+- 
 ***
 
