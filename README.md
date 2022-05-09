@@ -178,5 +178,18 @@
 ## Reflog
 - Reflog gives you references to a sequential history of what you have done to the repository
 - Git's reflog is a history of the changes made to the HEAD 
-- 
+- Delete current commit by following commands
+```  git checkout HEAD^
+	 git branch -f currentBranch
+	 git checkout currentBranch
+	 git log
+```
+- Now you can see ```git log``` doesn't show your latest commit, and it's history is kind of lost
+- This is where ```git reflog``` comes into picture, it tracks all the movements of HEAD pointer, and it contains references/commitID's to the state of the repository ay various points even in those points are no longer reachable within the repository
+- ``` git reset --hard latestCommitID
+	  git log
+  ```
+- Above command will help restore previous commit
+***
 
+##
