@@ -169,5 +169,6 @@
 - ``git stash drop`` will remove the stash item.
 ***
 
-
-
+## Git Add Interactive
+### git add -i command
+- 
