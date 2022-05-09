@@ -1,0 +1,25 @@
+- Suppose bug exists in 63rd commit
+- Creating a shell script to find 63 string text
+> cat > test.sh << END
+> if grep 63 projectfile
+> then
+>   echo BAD
+> else
+>   echo GOOD
+> fi
+> END
+
+- Now Create 100 commits
+- for ((i=1;i<=100;i++))
+> do
+> echo $i >> projectfile
+> git commit -am "A$i"
+> done
+
+- Now use git bisect to look for 63rd file/commit
+- git bisect start
+- Mark BAD state
+    - git bisect bad --> Current Commit that is Broken
+    - git checkout HEAD~99 --> Move to first commit on this branch
+    - git bisect good --> Mark Current commit as Good, if it is good !!
+    - Now keep on checking if commit pointed to by git bisect is good or bad, and mark it accordingly

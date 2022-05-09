@@ -220,6 +220,7 @@
 **
 
 ## Git Bisect
+- ``man git-bisect``
 - Bisecting is a very powerful ``tool for finding bugs``.
 - You create a ``Git bisect “session”`` and interact with the repository until you get the answer to your problem.
 - Scenario
@@ -233,3 +234,15 @@
 - It provides a version that is ``halfway`` in between ``good`` and ``bad`` ![git bisect 1](Images/git-bisect-1.png)
 - And carry on above process until the commit where bug arised is found ![git bisect 2](Images/git-bisect-2.png)
 - BAD commit found ![BAD commit found](Images/found-BAD-commit.png)
+- ```git bisect start
+	 git bisect bad
+	 git bisect good
+  ```
+- Repeat until the broken commit is found
+
+### ~ Operator
+- Used to move current head to n number of commits back
+- Example - ``git checkout HEAD~99`` will result in HEAD moving from commit 100 to commit 1
+### ^ Operator
+- Used to move to parent commit
+- Example - ``git checkout HEAD^99`` will move HEAD to it's parent Commit
