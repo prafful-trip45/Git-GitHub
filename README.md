@@ -132,3 +132,19 @@
 ## Tags
 - Tags are the same as branches, except they do not have history. They point to a particular commit, but it doesn't change
 - ```git tag i_was_here```
+***
+
+## Merging
+- Merging is the opposite of branching
+- When you merge, you take two separate points in your development tree and fuse them together
+- ```git merge firstBranchName secondBranchName```
+- Pre Merge repo tree ![Pre-Merge Tree](Images/Pre-Merge.png)
+- Post Merge repo tree ![Post-Merge Tree](Images/Post-Merge.png)
+### Merge Conflicts
+- 
+***
+
+## git stash
+- TBD
+***
+
