@@ -162,6 +162,7 @@
 - Git commits the state of the index and then commits all current local changes to above branch
 - “commit” message ``WIP on master`` and ``index on master`` is added automatically for the stash.
 - And the HEAD pointer is moved back to previous commit before these local changes
-- 
+- ``git stash show --patch stash@{0}`` to see information about particular git stash
+- ``git stash apply stash@{1}`` to apply a particular stash changes
 ***
 
