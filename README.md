@@ -192,4 +192,44 @@
 - Above command will help restore previous commit
 ***
 
-##
+## Cherry-Picking
+- ``Port changes from one branch to another``
+- Since every commit in Git is a change set with a reference ID, changes can be ported from one branch to another
+- Use commit ID of which changes are to be brought into current branch
+- ```git cherry-pick commitID```
+- Above command might fail if ``diff`` operation can be applied, i.e., merge conflicts arise
+**
+
+## Git Rebase and Fast-Forwarding
+- Concept of Git rebase is to overcome drawbacks of merging
+- With ``Merging``, history can get complicated due to extra commits getting introduced
+- And with rebase current branch can be deleted safely without any significant information being lost.
+- Merging Scenarios
+	- ![Before Merge](Images/Pre-Merge1.png)
+	- ![Post Merge](Images/Post-Merge2.png)
+- With rebase 
+	- ![After Rebase](Images/afterRebase.png)
+	- ![After Fast Forward](Images/afterFastForward.png)
+- ``What Rebasing Does``
+	- ``git rebase master``, this command takes the changes from latest master branch commit and move them to currentBranch, which might result in merge conflicts
+	- Afterr resolving merge conflicts do ``git rebase --continue`` to continue rebase operation
+	- Now head is pointing to currentBranch, refer to After ``Rebase Image`` above
+	- Now all the changes are in one tree line, now merge ``current branch`` into ```master branch``` by ``git merge branchName`` command
+	- Because the changes are in a line, there aren’t any new changes that need to be made. The master branch pointer merely needs to be “fast-forwarded” to the same point as feature1!
+	- Boom!! You are in the desired state of ``After Fast Forward`` image above
+**
+
+## Git Bisect
+- Bisecting is a very powerful ``tool for finding bugs``.
+- You create a ``Git bisect “session”`` and interact with the repository until you get the answer to your problem.
+- Scenario
+	- Suppose there are 100 commits to a branch ![Initial Bisect branch](Images/100CommitBranch.png)
+	- Now I clone repo and notice a bug with current state
+	- To investigate the issue 
+		- First way is to read code, try to debug, do lodding, etc.
+		- Second way is to use ``git bisect``
+- Choose two scenarios, ``good`` and ``bad`` ![goodAndBadCommit](Images/good-bad-commits.png)
+- Now git bisect works by Binary Search method 
+- It provides a version that is ``halfway`` in between ``good`` and ``bad`` ![git bisect 1](Images/git-bisect-1.png)
+- And carry on above process until the commit where bug arised is found ![git bisect 2](Images/git-bisect-2.png)
+- BAD commit found ![BAD commit found](Images/found-BAD-commit.png)
