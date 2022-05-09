@@ -171,4 +171,10 @@
 
 ## Git Add Interactive
 ### git add -i command
+- TBD
+***
+
+## Reflog
+- Reflog gives you references to a sequential history of what you have done to the repository
 - 
+
