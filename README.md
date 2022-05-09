@@ -145,6 +145,10 @@
 - Git then takes the changes on the branch ```B``` that you are merging into from that ```first common ancestor``` and applies them to the branch you are on in one go.
 - These changes create a new commit.
 - Sometimes these changes conflict with each other, meaning both branches altered same lines, thus git throws a merge conflict error
+- 3 type of arrows
+    - ```<<<<<<<``` Marks First common ancestor, and the start of changes on current branch
+    - ```=======``` Marks the junction of two branches, the current branch and the branch to be merged with
+    - ```>>>>>>>``` Marks the end of changes in other branch
 ***
 
 ## git stash
