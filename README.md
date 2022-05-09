@@ -246,3 +246,17 @@
 ### ^ Operator
 - Used to move to parent commit
 - Example - ``git checkout HEAD^99`` will move HEAD to it's parent Commit
+### Practice
+```git show HEAD^
+	 git show HEAD^^
+	 git show HEAD^2
+	 git show HEAD~1
+	 git show HEAD~2
+	 git show HEAD~2^1
+```
+
+***
+
+## The -X ours flag
+- When merging, you can tell Git to use specific strategies to help it decide how to merge and reduce the chances of having to resolve a conflict.
+- With ``-X ours`` flag, when faced with a conflict, Git will favor changes made within the current branch over the one being merged in.
