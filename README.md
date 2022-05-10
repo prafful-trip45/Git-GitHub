@@ -2,7 +2,8 @@
 - Config files are global to the host
 - 4 Stages of a File in Git ![File Stages](Images/4Stages_Of_File.png)
 - GIT Cheat Sheet ![Cheat Sheet](Images/Git-Cheat-Sheet.webp)
-- - The repo from which current folder was cloned, that remote is given ```origin``` name by default
+- The repo from which current folder was cloned, that remote is given ```origin``` name by default
+- Git can supported both Distributed VCS as well as Centralized VCS
 ***
 
 ## Errors faced
@@ -260,3 +261,45 @@
 ## The -X ours flag
 - When merging, you can tell Git to use specific strategies to help it decide how to merge and reduce the chances of having to resolve a conflict.
 - With ``-X ours`` flag, when faced with a conflict, Git will favor changes made within the current branch over the one being merged in.
+***
+
+## Cloning a Repo
+- When a repo is cloned, then the origin branch has no visibility of any remotes, but the cloned one does ![clonedRepo-Config](Images/cloned-config.png) ![originRepo-Config](Images/origin-config.png)
+- The files in two repos would have ``identical content``, but their config files would ``differ``
+- See contents of ```./git/config``` file for a cloned repo ```cat .git/config```
+- It would have entry corresponding to ``origin`` URL
+	- URLs can be an ``http://`` or ``https://`` one or even ``ssh://`` or ``git://``
+	- ``git://`` is a git specific protocol that is rarely used these days
+	- A Git repository cloned with ``git@``, in fact using the ssh:// protocol under the hood.
+- ```git remote``` would return name ```origin``` back
+- The name ```origin``` is the _default name for a remote_
+
+## Git Fetch and Push and Merge
+- Remotes are divided into ``fetch`` and ``pull`` actions
+- These relate to two different actions on remotes, ``getting changes from a remote`` and ``pushing changes to a remote``
+- ```Fecthing from Remote```
+	- The command git fetch gets the latest changes from the remote repository and copies them into the local repository, updating the local copies of any branches that have been changed.
+	- These fetched changes are not mixed with local branches but are kept in a separate place in repo.
+	- Reference to HEAD pointers to origin are stored under ``.git/refs`` folders files
+	- ``git fetch origin branchName`` fetches changes from the specified branch
+	- ``git branch --all``, you can see repository is aware of all the branches ![branches After fetch](Images/Branch-List-after-fetch.png)
+- ```refs folder```
+	- ``ls ./git/refs`` under cloned repo after executing Fetch ![git-refs-contents](Images/git-refs.png)
+	- It has heads, which contains references/commitID's to the local branch: ``cat .git/refs/heads/master`` ![HEAD-ref-local](Images/HEAD-refsLocal.png)
+	- And similarly for remote branches: ``cat .git/refs/remotes/origin/master`` ![HEAD-ref-remotes](Images/git-refs-remotes.png)
+- So now we've fetched the remote branch and have a copy of it locally in cloned repo.
+- ``Apply Remote Changes to Local``
+	- ``git merge origin/remoteBranchName``
+	- ``git log --oneline --graph``
+## Git Pull
+- ``git pull origin`` combines ``fetch`` and ``merge`` operations simulatneously
+***
+
+## Working with Multiple Repo's/Remotes
+- How to move changes between multiple remotes !!
+- Can add remote reference of branch into another by ``git remote add remoteName ../repoName``
+- ``git remote -v`` to see all remotes for current repo ![Added Extra Remotes](Images/add-remote.png)
+- Changes from Any remote can be fetched now ``git fetch remoteName branchname`` ![Fetch remote Branch](Images/fetch-any-remote-branch.png)
+***
+
+## Pushing Code
