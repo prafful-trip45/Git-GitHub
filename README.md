@@ -410,9 +410,37 @@
 - Take a look at the ``git/hooks`` folder
 - In the ``.git/hooks`` folder, there are various examples of scripts that can be run at various points in the Git content lifecycle
 - ``Create a Hook file``
-```cat > .git/hooks/pre-commit << EOF
+- ```cat > .git/hooks/pre-commit << EOF
 	echo NO WORKING AT WEEKENDS!
 	exit 1
 	EOF
 	chmod +x .git/hooks/pre-commit```
-	- The script prints a message about not working on weekends and exits with a code of 1, which is a generic error code in a shell script (exit 0 would mean “OK”).
+- The script prints a message about not working on weekends and exits with a code of 1, which is a generic error code in a shell script (exit 0 would mean “OK”).
+- ![git-hook-commit-failed](Images/git-hooks-fail.png)
+- ![git-hook-commit-failed](Images/git-hooks-pass.png)
+- ``Banning Keywords``
+	- ```echo 'a political comment' >> file1
+         cat > .git/hooks/pre-commit << EOF
+		 if grep -rni politic *
+		 then
+		 echo 'no politics allowed!'
+		 exit 1
+		 fi
+		 echo OK
+		 exit 0
+		 EOF
+		 git commit -am 'Political comment'```
+- Even more sophisticated scripts are possible but require a deeper knowledge of bash
+- Hooks don't move as part of repo code, so if the hook has to be transferred it has to be manually added into any clone/fork
+- ``Client-Side hook`` and ``Server-side Hook``
+- ``pre-commit hook``, a pre-receive script, which will be run when anything is pushed to this repository.
+	- ``cat > hooks/pre-receive << 'EOF'
+        #!/bin/bash
+        read _oldrev newrev _branch
+        git cat-file -p $newrev | grep '[A-Z][A-Z]*-[0-9][0-9]*'
+        EOF``
+	- ``chmod +x hooks/pre-receive`` Make the script executable:
+- The read command in the above code is the key one to understand. It reads three variables: _oldrev, newrev, and _branch from standard input (i.e., the data that is coming in to the script). The contents of these variables will match. The previous Git revision reference commit refers to the branch it is committed on. The new Git revision reference commit refers to the branch it is committed on. Git arranges that these references are given to the pre-receive script on standard input so that action can be taken accordingly.
+
+- Then, you use the (previously unseen in this course) git cat-file command to output details of the latest commit value stored in the newrev variable. The output of this latest commit is run through a grep command that looks for a specific string format in the commit message. If the grep finds a match, then it returns no error and all is OK. If it doesn’t find a match, then grep returns an error as does the script.
+- This grep only returns successfully if it matches a string that matches the format of a JIRA ticket ID (e.g., PROJ-123). The end effect is to enforce that the last commit being pushed must have a reference to such a ticket ID for it to be accepted. You might want such a policy to ensure that every set of commits can be traced back to a ticket ID.
