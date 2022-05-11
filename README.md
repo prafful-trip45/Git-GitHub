@@ -4,6 +4,7 @@
 - GIT Cheat Sheet ![Cheat Sheet](Images/Git-Cheat-Sheet.webp)
 - The repo from which current folder was cloned, that remote is given ```origin``` name by default
 - Git can supported both Distributed VCS as well as Centralized VCS
+- ``git branch -a -vv`` to see which local branch tracks which remote branch ![Tracked Branch](Images/Track-Remote-Branch.png)
 ***
 
 ## Errors faced
@@ -303,3 +304,80 @@
 ***
 
 ## Pushing Code
+- ``git push remoteName branchName``, remoteName is ``origin`` by default and next comes your currentBranch name whose changes you want to push
+- git will create a branch on you remote repo. if one does not exist already
+- ```What if remote repo already contains a branch with same name```
+	- An error is thrown ![Push branch remote](Images/push-sameName-branch.png)
+	- ``Updates were rejected because the remote contains work that you do not have locally.``
+	- ``This is usually caused by another repository pushing to the same ref.``
+	- ``git fetch and merge`` to resolve above error
+		- Fix any merge conflicts, add the new file and commit new changes
+		- Then try to push again
+
+- ``Tracking remote branches with different names``
+	- Just like ``master`` branch on a cloned repo tracks ``origin/master`` on remote repo,.
+	- If you want to a ``local branch`` to track any ``remote branch``
+		- ``git push --set-upstream remoteName branchName`` OR
+		- ``git push -u origin branchName`` 
+**
+
+## Git submodules
+- Submodules allow you to loosely link different Git repositories together so that they are bundled together.
+- At the same time, it ensures that changing one will not break the other.
+- Sometimes, you want to include one repository in another but do not want to simply copy it over and have to maintain its changes separately.
+- Submodules allow you to manage the separate codebase within your repository without affecting the other repository.
+- Git submodules solve external repository dependency issues with a little overhead.
+- `` Tracking Copies ``
+	- Git submodule commands are Git commands used to track copies of other repositories within your repository.
+	- Tracking is under your control (so you decide when it gets updated, regardless of how the other repository moves on
+	- The tracking is done within a file that is stored with your Git repository.
+- ``git submodule init`` Initialse Submodules
+- ``git submodule add repoLink(A)`` Link another repo. as a submodule ![git-add-submodule](Images/git-add-submodule.png)
+	- Above command will create a ``.gitmodules`` file 
+	- And a folder ``repoName(A)`` get's created as well
+	- ``repoName(A)`` has been cloned just like any ``git clone`` command
+	- ``ls -a repoName(A)``
+	- ``.gitmodules`` file tracks where the submodule comes from
+	- ``git submodule status`` works similar to ``git status`` command ![git-submodule-status](Images/submodule-status.png)
+- Since submodule is just a ``clone``, it can be navigated just like any other git repo
+- ``git checkout -b firstRepoMaster --track origin/master`` will create a new branch named ``firstRepoMaster`` to track ``origin/master`` of ``repoName(A)`` repo
+- Note that ``secondRepo`` tracks the specific commit and not the remote branch.
+- This means that changes to ``repoName(A)`` in the origin repository are not automatically tracked within ``secondRepo`` submodule. ![track-submodule-branch](Images/track-submodule-branch.png)
+- Even if ``repoName(A)`` has a commit in it's branch, the branch in ``secondRepo`` that tracks ``repoName(A)`` reports everything is up-to-date, since the submodule is tracking a particular commit and not the branch
+- ``git pull`` to get latest changes from SubModule branch ![git-pull-submodule-changes](Images/pull-submodule-changes.png)
+**
+
+## Pull Requests
+- A ``pull request`` is a request from a user for another user to accept a change that has been committed elsewhere
+- ``git push -u origin myfirstbranchlocal:myfirstbranchremote``, This indicates that the ``local branch myfirstbranchlocal`` should be pushed to the ``remote branch myfirstbranchremote``.
+- By default, Git assumes you want to match the names on the local and the remote repository
+- Now that you’ve created the tmpbranch on the remote repository, you might decide you’ve been too hasty and that “tmpbranch” is not needed on the remote.
+	- To delete it on the remote, specify nothing before the colon like this: ``git push origin :tmpbranch``
+	- This has the effect of removing the branch on the remote repository.
+- ``git branch -d mybranch`` Delete Local branch
+- ``git branch -D abranch``, if branch 'abranch' is not fully merged.
+**
+
+## Git Log Flags
+- ``git log --graph --oneline --all --decorate --topo-order``
+- ``git log --oneline`` use ``-–oneline`` to only show the commit ID and comment per-commit.
+- ``git log --oneline --graph`` You can see where merges take place and what commits were merged.
+- ``git log --graph --oneline --all`` I want to see all the branches in the history, so I add the ``-–all`` flag.
+- ``git log --graph --oneline --all --decorate`` Each remote or type of branch/tag is shown in a different color (even stashes!).
+- ``git log --graph --oneline --all --decorate --source`` You can show the ref name on each line by adding ``-–source``
+- ``git log --graph --oneline --all --decorate --simplify-by-decoration`` You may want to only see the significant points of change to eliminate all the intermediary commits.
+- ``git log --graph --oneline --all --decorate --simplify-by-decoration --pretty=`` You might want to re-introduce the date information
+**
+
+## Squashing Commits
+- In order to squash a set of commits, you need:
+	- A reference to the last (latest) commit of the set you want to squash.
+	- A reference to the oldest (first) commit of the set you want to squash.
+- ``How to find Reference to oldest commit``, use the ``git rev-list`` command.
+- ``git rev-list --max-parents=0 HEAD``, gets you the original commit
+- Git assumes that HEAD was the second argument if none was given.
+- ``git rebase -i $(git rev-list --max-parents=0 HEAD) HEAD``
+**
+
+## Bare repositories
+- 
