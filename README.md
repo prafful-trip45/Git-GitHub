@@ -367,6 +367,7 @@
 - ``git log --graph --oneline --all --decorate --source`` You can show the ref name on each line by adding ``-–source``
 - ``git log --graph --oneline --all --decorate --simplify-by-decoration`` You may want to only see the significant points of change to eliminate all the intermediary commits.
 - ``git log --graph --oneline --all --decorate --simplify-by-decoration --pretty=`` You might want to re-introduce the date information
+- ``git log --patch``,  patch flag is used to check the changes at each commit
 **
 
 ## Squashing Commits
@@ -380,4 +381,38 @@
 **
 
 ## Bare repositories
-- 
+- Bare repositories and ``git push -f`` force push
+- ``git init --bare``, initialises a bare repository
+- ``flag bare = true`` for bare repositories under ``config`` file
+**
+
+## Cherry-picking and 3-way Merging
+- ```Three-way merges``` when performing a ``merge or cherry-pick``
+	- Git says: “I can’t apply that individual commit here without any conflicts, so I’m going to apply all the diffs between these two points, and let you figure out what’s going on.”
+	- This is why it is called a “three-way merge.” 
+	- The merge compares the changes between the source (abranchtag), the target (the master branch), and the first common ancestor (9c3f1af above).
+	- If there is ``no conflict`` in the change, you ``cherry-pick``, and then the ``three-way merge is not invoked``.
+- ``git cherry-pick --abort`` to revert cherry-pick that was started
+- ``Generate Patch`` 
+	- Create a patch file that has the diff contained in the abranchtag commit within it.
+	- Apply that diff to the master branch.
+	- ``git diff-tree - abranchtag > abranchtag.patch``
+	- Now look at contents of above patch file by ``cat abranchtag.patch``.
+- ``Apply Patch``
+	- Now that you have the patch for that commit (and only that commit), you can apply it to the master branch: ``cat abranchtag.patch | git apply --reject``
+	- conflict you saw before was put in a ``.rej file``.
+	- ``.rej`` file is created with the name of the file the conflict relates to and the ``.rej`` appended
+**
+
+## Git Hooks
+- ``Git hooks`` allow you to control what the Git repository does when certain actions are performed.
+- They’re called ``hooks`` because they allow you to hook a script at a specific point in the Git workflow.
+- Take a look at the ``git/hooks`` folder
+- In the ``.git/hooks`` folder, there are various examples of scripts that can be run at various points in the Git content lifecycle
+- ``Create a Hook file``
+```cat > .git/hooks/pre-commit << EOF
+	echo NO WORKING AT WEEKENDS!
+	exit 1
+	EOF
+	chmod +x .git/hooks/pre-commit```
+	- The script prints a message about not working on weekends and exits with a code of 1, which is a generic error code in a shell script (exit 0 would mean “OK”).
